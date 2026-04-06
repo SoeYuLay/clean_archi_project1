@@ -10,7 +10,16 @@ class ArticleModel extends ArticleEntity {
     String ? url,
     String ? publishedAt,
     String ? content,
-  }) : super(id: 0, title: '', author: '', description: '', urlToImage: '', url: '', publishedAt: '', content: '');
+  }) : super(
+          id: id ?? 0,
+          title: title ?? '',
+          author: author ?? '',
+          description: description ?? '',
+          urlToImage: urlToImage ?? '',
+          url: url ?? '',
+          publishedAt: publishedAt ?? '',
+          content: content ?? '',
+        );
 
   factory ArticleModel.fromJson(Map<String, dynamic> json) {
     return ArticleModel(
