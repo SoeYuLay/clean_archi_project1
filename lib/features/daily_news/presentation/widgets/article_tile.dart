@@ -3,7 +3,7 @@ import 'package:clean_archi_project1/features/daily_news/domain/entities/article
 import 'package:flutter/material.dart';
 
 class ArticleWidget extends StatelessWidget {
-  final ArticleEntity ? article;
+  final Article ? article;
   const ArticleWidget({super.key, this.article});
 
   @override

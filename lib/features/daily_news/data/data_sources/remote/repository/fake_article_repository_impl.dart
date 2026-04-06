@@ -4,10 +4,10 @@ import 'package:clean_archi_project1/features/daily_news/domain/repository/artic
 
 class FakeArticleRepositoryImpl implements ArticleRepository {
   @override
-  Future<DataState<List<ArticleEntity>>> getNewsArticles() async {
+  Future<DataState<List<Article>>> getNewsArticles() async {
     await Future.delayed(const Duration(seconds: 1)); // Simulate network delay
     return DataSuccess([
-      ArticleEntity(
+      Article(
         id: 1,
         title: 'Fake Article 1',
         author: 'Author 1',
@@ -17,7 +17,7 @@ class FakeArticleRepositoryImpl implements ArticleRepository {
         urlToImage: 'https://example.com/fake-article-1.jpg',
         publishedAt: DateTime.now().toIso8601String(),
       ),
-      ArticleEntity(
+      Article(
         id: 2,
         title: 'Fake Article 2',
         author: 'Author 2', 
@@ -27,7 +27,7 @@ class FakeArticleRepositoryImpl implements ArticleRepository {
         urlToImage: 'https://example.com/fake-article-2.jpg',
         publishedAt: DateTime.now().toIso8601String(),
       ),
-      ArticleEntity(
+      Article(
         id: 3,
         title: 'Fake Article 3',
         author: 'Author 3', 
