@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class RemoteArticlesState extends Equatable {
-  final List<ArticleEntity> ? articles;
+  final List<Article> ? articles;
   final DioException ? error;
 
   const RemoteArticlesState({this.articles, this.error});
@@ -17,7 +17,7 @@ class RemoteArticlesLoading extends RemoteArticlesState {
 }
 
 class RemoteArticlesDone extends RemoteArticlesState {
-  const RemoteArticlesDone({required List<ArticleEntity> articles})
+  const RemoteArticlesDone({required List<Article> articles})
       : super(articles: articles);
 }
 
