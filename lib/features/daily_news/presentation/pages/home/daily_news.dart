@@ -4,6 +4,7 @@ import 'package:clean_archi_project1/features/daily_news/presentation/bloc/artic
 import 'package:clean_archi_project1/features/daily_news/presentation/widgets/article_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class DailyNews extends StatelessWidget {
   const DailyNews({super.key});
@@ -59,10 +60,12 @@ class DailyNews extends StatelessWidget {
   }
 
   void _onArticlePressed(BuildContext context,Article article){
-    Navigator.pushNamed(context, '/ArticleDetails',arguments: article);
+    // Navigator.pushNamed(context, '/ArticleDetails',arguments: article);
+    context.go('/ArticleDetails', extra: article);
   }
 
   void _onShowSavedArticles(BuildContext context) {
-    Navigator.pushNamed(context, '/SavedArticles');
+    // Navigator.pushNamed(context, '/SavedArticles');
+    context.push('/SavedArticles');
   }
 }

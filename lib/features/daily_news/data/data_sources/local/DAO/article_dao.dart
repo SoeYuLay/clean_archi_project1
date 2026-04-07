@@ -3,7 +3,7 @@ import 'package:floor/floor.dart';
 
 @dao
 abstract class ArticleDao {
-  @insert
+  @Insert(onConflict: OnConflictStrategy.replace)
   Future<void> insertArticle(ArticleEntity article);
 
   @Query("SELECT * FROM articles")

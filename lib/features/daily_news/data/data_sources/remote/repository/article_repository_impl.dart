@@ -40,7 +40,6 @@
 import 'package:clean_archi_project1/core/resources/constants/constants.dart';
 import 'package:clean_archi_project1/core/resources/data_state.dart';
 import 'package:clean_archi_project1/features/daily_news/data/data_sources/local/app_database.dart';
-import 'package:clean_archi_project1/features/daily_news/data/data_sources/local/models/articleEntity.dart';
 import 'package:clean_archi_project1/features/daily_news/data/data_sources/remote/news_api_service.dart';
 import 'package:clean_archi_project1/features/daily_news/data/mappers/article_mapper.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
