@@ -1,28 +1,32 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
+import 'package:clean_archi_project1/features/daily_news/presentation/pages/article_detail/article_detail.dart';
 import 'package:flutter/material.dart';
 
 class ArticleWidget extends StatelessWidget {
-  final Article ? article;
-  const ArticleWidget({super.key, this.article});
+  final Article article;
+  const ArticleWidget({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsetsDirectional.only(start: 10, end: 10, top: 5, bottom: 5),
-      height: MediaQuery.of(context).size.width/2.2,
-      child: Row(
-        children: [
-          _buildImage(context),
-          _buildTitleAndDescription(),
-        ],
+    return InkWell(
+      onTap: () => _openArticleDetails(context),
+      child: Container(
+        padding: const EdgeInsetsDirectional.only(start: 10, end: 10, top: 5, bottom: 5),
+        height: MediaQuery.of(context).size.width / 2.2,
+        child: Row(
+          children: [
+            _buildImage(context),
+            _buildTitleAndDescription(),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildImage(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: article!.urlToImage,
+      imageUrl: article.urlToImage,
       imageBuilder: (context, imageProvider) => Padding(
         padding: const EdgeInsetsDirectional.only(end: 14),
         child: ClipRRect(
@@ -78,7 +82,7 @@ class ArticleWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              article!.title ?? 'Article Title1',
+              article.title,
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
@@ -93,7 +97,7 @@ class ArticleWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 4.0),
                 child: Text(
-                  article!.description ?? '',
+                  article.description,
                   maxLines: 2,
                   style: const TextStyle(
                     color: Colors.black
@@ -107,7 +111,7 @@ class ArticleWidget extends StatelessWidget {
                 const Icon(Icons.timeline_outlined, size: 16),
                 const SizedBox(width: 4),
                 Text(
-                  article!.publishedAt,
+                  article.publishedAt,
                   style: const TextStyle(
                     fontSize: 12,
                     color: Colors.black
@@ -117,6 +121,15 @@ class ArticleWidget extends StatelessWidget {
               ),
             
           ],),
+      ),
+    );
+  }
+
+  void _openArticleDetails(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ArticleDetailsView(article: article),
       ),
     );
   }
