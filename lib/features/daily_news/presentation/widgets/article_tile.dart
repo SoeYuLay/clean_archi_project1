@@ -2,10 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/pages/article_detail/article_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ArticleWidget extends StatelessWidget {
   final Article article;
-  const ArticleWidget({super.key, required this.article});
+  final bool isRemovable;
+  final Function(Article)? onRemove;
+  final Function(Article)? onArticlePressed;
+  
+  const ArticleWidget({
+    super.key,
+    required this.article,
+    this.isRemovable = false,
+    this.onRemove,
+    this.onArticlePressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +28,12 @@ class ArticleWidget extends StatelessWidget {
         child: Row(
           children: [
             _buildImage(context),
-            _buildTitleAndDescription(),
+            Expanded(child: _buildTitleAndDescription()),
+            if (isRemovable) 
+              IconButton(
+                icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
+                onPressed: () => onRemove?.call(article),
+              ),
           ],
         ),
       ),
@@ -126,11 +142,6 @@ class ArticleWidget extends StatelessWidget {
   }
 
   void _openArticleDetails(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => ArticleDetailsView(article: article),
-      ),
-    );
+    context.push('/ArticleDetails', extra: article);
   }
 }

@@ -7,6 +7,7 @@ import 'package:clean_archi_project1/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 
 class SavedArticles extends HookWidget {
   const SavedArticles({super.key});
@@ -58,9 +59,9 @@ class SavedArticles extends HookWidget {
       itemBuilder: (context, index){
         return ArticleWidget(
           article: articles[index],
-          // isRemovable: true,
-          // onRemove: (article) => _onRemoveArticle(context, article),
-          // onArticlePressed: (article) => _onArticlePressed(context, article),
+          isRemovable: true,
+          onRemove: (article) => _onRemoveArticle(context, article),
+          onArticlePressed: (article) => _onArticlePressed(context, article),
           );
       },
       );
@@ -75,6 +76,6 @@ class SavedArticles extends HookWidget {
   }
 
   void _onArticlePressed(BuildContext context, Article article) {
-    Navigator.pushNamed(context, '/ArticleDetails', arguments: article);
+    context.push('/ArticleDetails', extra: article);
   }
 }
