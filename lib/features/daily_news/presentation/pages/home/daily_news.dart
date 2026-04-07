@@ -36,16 +36,16 @@ class DailyNews extends StatelessWidget {
   }
 
   _buildBody(){
-    return BlocBuilder<RemoteArticlesBloc,RemoteArticlesState>
+    return BlocBuilder<RemoteArticlesBloc,RemoteArticleState>
     (
       builder: (_,state){
-        if(state is RemoteArticlesLoading){
+        if(state is RemoteArticleLoading){
           return const Center(child: CircularProgressIndicator());
         }
-        if (state is RemoteArticlesError) {
+        if (state is RemoteArticleError) {
           return const Center(child:Icon(Icons.refresh));
         }
-        if(state is RemoteArticlesDone){
+        if(state is RemoteArticleDone){
           return ListView.builder(
             itemBuilder: (context, index){
               return GestureDetector(

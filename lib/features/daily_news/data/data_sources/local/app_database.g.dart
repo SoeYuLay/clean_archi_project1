@@ -96,7 +96,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `articles` (`title` TEXT, `author` TEXT, `description` TEXT, `urlToImage` TEXT, `url` TEXT, `publishedAt` TEXT, `content` TEXT, PRIMARY KEY (`url`))');
+            'CREATE TABLE IF NOT EXISTS `articles` (`title` TEXT, `author` TEXT, `description` TEXT, `urlToImage` TEXT, `url` TEXT NOT NULL, `publishedAt` TEXT, `content` TEXT, PRIMARY KEY (`url`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -167,7 +167,7 @@ class _$ArticleDao extends ArticleDao {
   @override
   Future<void> insertArticle(ArticleEntity article) async {
     await _articleEntityInsertionAdapter.insert(
-        article, OnConflictStrategy.abort);
+        article, OnConflictStrategy.replace);
   }
 
   @override
