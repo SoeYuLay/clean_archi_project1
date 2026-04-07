@@ -1,21 +1,26 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:floor/floor.dart';
 
-part 'articleEntity.freezed.dart';
-part 'articleEntity.g.dart';
+@Entity(tableName: 'articles')
+class ArticleEntity {
+  
+  final String? title;
+  final String? author;
+  final String? description;
+  final String? urlToImage;
+  @primaryKey
+  final String url;
+  final String? publishedAt;
+  final String? content;
 
-@freezed
-class ArticleEntity with _$ArticleEntity {
-  const factory ArticleEntity({
-    int? id,
-    String? title,
-    String? author,
-    String? description,
-    String? urlToImage,
-    String? url,
-    String? publishedAt,
-    String? content,
-  }) = _ArticleEntity;
-
-  factory ArticleEntity.fromJson(Map<String, dynamic> json) =>
-      _$ArticleEntityFromJson(json);
+  ArticleEntity({
+    this.title,
+    this.author,
+    this.description,
+    this.urlToImage,
+    required this.url,
+    this.publishedAt,
+    this.content,
+  });
 }
+
+

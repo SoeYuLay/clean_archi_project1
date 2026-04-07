@@ -42,7 +42,7 @@ part 'articleDto.g.dart';
 @freezed
 class ArticleDto with _$ArticleDto {
   const factory ArticleDto({
-    int? id,
+    // int? id,
     String? title,
     String? author,
     String? description,

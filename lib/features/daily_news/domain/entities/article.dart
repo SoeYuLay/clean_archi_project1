@@ -42,7 +42,7 @@ part 'article.g.dart';
 @freezed
 class Article with _$Article {
   const  factory Article({
-    required int id,
+    // required int id,
     required String title,
     required String author,
     required String description,

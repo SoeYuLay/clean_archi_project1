@@ -20,7 +20,7 @@ ArticleDto _$ArticleDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ArticleDto {
-  int? get id => throw _privateConstructorUsedError;
+// int? id,
   String? get title => throw _privateConstructorUsedError;
   String? get author => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
@@ -42,8 +42,7 @@ abstract class $ArticleDtoCopyWith<$Res> {
       _$ArticleDtoCopyWithImpl<$Res, ArticleDto>;
   @useResult
   $Res call(
-      {int? id,
-      String? title,
+      {String? title,
       String? author,
       String? description,
       String? urlToImage,
@@ -65,7 +64,6 @@ class _$ArticleDtoCopyWithImpl<$Res, $Val extends ArticleDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? title = freezed,
     Object? author = freezed,
     Object? description = freezed,
@@ -75,10 +73,6 @@ class _$ArticleDtoCopyWithImpl<$Res, $Val extends ArticleDto>
     Object? content = freezed,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -120,8 +114,7 @@ abstract class _$$ArticleDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
-      String? title,
+      {String? title,
       String? author,
       String? description,
       String? urlToImage,
@@ -141,7 +134,6 @@ class __$$ArticleDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
     Object? title = freezed,
     Object? author = freezed,
     Object? description = freezed,
@@ -151,10 +143,6 @@ class __$$ArticleDtoImplCopyWithImpl<$Res>
     Object? content = freezed,
   }) {
     return _then(_$ArticleDtoImpl(
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int?,
       title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -191,8 +179,7 @@ class __$$ArticleDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ArticleDtoImpl implements _ArticleDto {
   const _$ArticleDtoImpl(
-      {this.id,
-      this.title,
+      {this.title,
       this.author,
       this.description,
       this.urlToImage,
@@ -203,8 +190,7 @@ class _$ArticleDtoImpl implements _ArticleDto {
   factory _$ArticleDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ArticleDtoImplFromJson(json);
 
-  @override
-  final int? id;
+// int? id,
   @override
   final String? title;
   @override
@@ -222,7 +208,7 @@ class _$ArticleDtoImpl implements _ArticleDto {
 
   @override
   String toString() {
-    return 'ArticleDto(id: $id, title: $title, author: $author, description: $description, urlToImage: $urlToImage, url: $url, publishedAt: $publishedAt, content: $content)';
+    return 'ArticleDto(title: $title, author: $author, description: $description, urlToImage: $urlToImage, url: $url, publishedAt: $publishedAt, content: $content)';
   }
 
   @override
@@ -230,7 +216,6 @@ class _$ArticleDtoImpl implements _ArticleDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ArticleDtoImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.description, description) ||
@@ -245,7 +230,7 @@ class _$ArticleDtoImpl implements _ArticleDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, author, description,
+  int get hashCode => Object.hash(runtimeType, title, author, description,
       urlToImage, url, publishedAt, content);
 
   @JsonKey(ignore: true)
@@ -264,8 +249,7 @@ class _$ArticleDtoImpl implements _ArticleDto {
 
 abstract class _ArticleDto implements ArticleDto {
   const factory _ArticleDto(
-      {final int? id,
-      final String? title,
+      {final String? title,
       final String? author,
       final String? description,
       final String? urlToImage,
@@ -276,9 +260,7 @@ abstract class _ArticleDto implements ArticleDto {
   factory _ArticleDto.fromJson(Map<String, dynamic> json) =
       _$ArticleDtoImpl.fromJson;
 
-  @override
-  int? get id;
-  @override
+  @override // int? id,
   String? get title;
   @override
   String? get author;

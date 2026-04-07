@@ -8,7 +8,6 @@ part of 'article.dart';
 
 _$ArticleImpl _$$ArticleImplFromJson(Map<String, dynamic> json) =>
     _$ArticleImpl(
-      id: (json['id'] as num).toInt(),
       title: json['title'] as String,
       author: json['author'] as String,
       description: json['description'] as String,
@@ -20,7 +19,6 @@ _$ArticleImpl _$$ArticleImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ArticleImplToJson(_$ArticleImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'title': instance.title,
       'author': instance.author,
       'description': instance.description,
