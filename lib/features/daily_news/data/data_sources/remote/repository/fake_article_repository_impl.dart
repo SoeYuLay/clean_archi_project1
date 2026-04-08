@@ -1,12 +1,14 @@
+import 'package:clean_archi_project1/core/error/failure.dart';
 import 'package:clean_archi_project1/core/resources/data_state.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/repository/article_repository.dart';
+import 'package:either_dart/either.dart';
 
 class FakeArticleRepositoryImpl implements ArticleRepository {
   @override
-  Future<DataState<List<Article>>> getNewsArticles() async {
+  Future<Either<Failure, List<Article>>> getNewsArticles() async {
     await Future.delayed(const Duration(seconds: 1)); // Simulate network delay
-    return DataSuccess([
+    return Right([
       Article(
         title: 'Fake Article 1',
         author: 'Author 1',
@@ -38,19 +40,19 @@ class FakeArticleRepositoryImpl implements ArticleRepository {
   }
   
   @override
-  Future<void> deleteArticle(Article article) {
+  Future<Either<Failure, void>> deleteArticle(Article article) {
     // TODO: implement deleteArticle
     throw UnimplementedError();
   }
   
   @override
-  Future<List<Article>> getSavedArticles() {
+  Future<Either<Failure, List<Article>>> getSavedArticles() {
     // TODO: implement getSavedArticles
     throw UnimplementedError();
   }
   
   @override
-  Future<void> saveArticle(Article article) {
+  Future<Either<Failure, void>> saveArticle(Article article) {
     // TODO: implement saveArticle
     throw UnimplementedError();
   }   

@@ -20,18 +20,24 @@ mixin _$LocalArticleState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<Article> articles) done,
+    required TResult Function(String error) error,
+    required TResult Function(String emptyMessage) empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<Article> articles)? done,
+    TResult? Function(String error)? error,
+    TResult? Function(String emptyMessage)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Article> articles)? done,
+    TResult Function(String error)? error,
+    TResult Function(String emptyMessage)? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,24 @@ mixin _$LocalArticleState {
   TResult map<TResult extends Object?>({
     required TResult Function(LocalArticleLoading value) loading,
     required TResult Function(LocalArticleDone value) done,
+    required TResult Function(LocalArticleError value) error,
+    required TResult Function(LocalArticleEmpty value) empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LocalArticleLoading value)? loading,
     TResult? Function(LocalArticleDone value)? done,
+    TResult? Function(LocalArticleError value)? error,
+    TResult? Function(LocalArticleEmpty value)? empty,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LocalArticleLoading value)? loading,
     TResult Function(LocalArticleDone value)? done,
+    TResult Function(LocalArticleError value)? error,
+    TResult Function(LocalArticleEmpty value)? empty,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -115,6 +127,8 @@ class _$LocalArticleLoadingImpl implements LocalArticleLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<Article> articles) done,
+    required TResult Function(String error) error,
+    required TResult Function(String emptyMessage) empty,
   }) {
     return loading();
   }
@@ -124,6 +138,8 @@ class _$LocalArticleLoadingImpl implements LocalArticleLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<Article> articles)? done,
+    TResult? Function(String error)? error,
+    TResult? Function(String emptyMessage)? empty,
   }) {
     return loading?.call();
   }
@@ -133,6 +149,8 @@ class _$LocalArticleLoadingImpl implements LocalArticleLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Article> articles)? done,
+    TResult Function(String error)? error,
+    TResult Function(String emptyMessage)? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -146,6 +164,8 @@ class _$LocalArticleLoadingImpl implements LocalArticleLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(LocalArticleLoading value) loading,
     required TResult Function(LocalArticleDone value) done,
+    required TResult Function(LocalArticleError value) error,
+    required TResult Function(LocalArticleEmpty value) empty,
   }) {
     return loading(this);
   }
@@ -155,6 +175,8 @@ class _$LocalArticleLoadingImpl implements LocalArticleLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LocalArticleLoading value)? loading,
     TResult? Function(LocalArticleDone value)? done,
+    TResult? Function(LocalArticleError value)? error,
+    TResult? Function(LocalArticleEmpty value)? empty,
   }) {
     return loading?.call(this);
   }
@@ -164,6 +186,8 @@ class _$LocalArticleLoadingImpl implements LocalArticleLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LocalArticleLoading value)? loading,
     TResult Function(LocalArticleDone value)? done,
+    TResult Function(LocalArticleError value)? error,
+    TResult Function(LocalArticleEmpty value)? empty,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -251,6 +275,8 @@ class _$LocalArticleDoneImpl implements LocalArticleDone {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<Article> articles) done,
+    required TResult Function(String error) error,
+    required TResult Function(String emptyMessage) empty,
   }) {
     return done(articles);
   }
@@ -260,6 +286,8 @@ class _$LocalArticleDoneImpl implements LocalArticleDone {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<Article> articles)? done,
+    TResult? Function(String error)? error,
+    TResult? Function(String emptyMessage)? empty,
   }) {
     return done?.call(articles);
   }
@@ -269,6 +297,8 @@ class _$LocalArticleDoneImpl implements LocalArticleDone {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Article> articles)? done,
+    TResult Function(String error)? error,
+    TResult Function(String emptyMessage)? empty,
     required TResult orElse(),
   }) {
     if (done != null) {
@@ -282,6 +312,8 @@ class _$LocalArticleDoneImpl implements LocalArticleDone {
   TResult map<TResult extends Object?>({
     required TResult Function(LocalArticleLoading value) loading,
     required TResult Function(LocalArticleDone value) done,
+    required TResult Function(LocalArticleError value) error,
+    required TResult Function(LocalArticleEmpty value) empty,
   }) {
     return done(this);
   }
@@ -291,6 +323,8 @@ class _$LocalArticleDoneImpl implements LocalArticleDone {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(LocalArticleLoading value)? loading,
     TResult? Function(LocalArticleDone value)? done,
+    TResult? Function(LocalArticleError value)? error,
+    TResult? Function(LocalArticleEmpty value)? empty,
   }) {
     return done?.call(this);
   }
@@ -300,6 +334,8 @@ class _$LocalArticleDoneImpl implements LocalArticleDone {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(LocalArticleLoading value)? loading,
     TResult Function(LocalArticleDone value)? done,
+    TResult Function(LocalArticleError value)? error,
+    TResult Function(LocalArticleEmpty value)? empty,
     required TResult orElse(),
   }) {
     if (done != null) {
@@ -316,5 +352,299 @@ abstract class LocalArticleDone implements LocalArticleState {
   List<Article> get articles;
   @JsonKey(ignore: true)
   _$$LocalArticleDoneImplCopyWith<_$LocalArticleDoneImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocalArticleErrorImplCopyWith<$Res> {
+  factory _$$LocalArticleErrorImplCopyWith(_$LocalArticleErrorImpl value,
+          $Res Function(_$LocalArticleErrorImpl) then) =
+      __$$LocalArticleErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$LocalArticleErrorImplCopyWithImpl<$Res>
+    extends _$LocalArticleStateCopyWithImpl<$Res, _$LocalArticleErrorImpl>
+    implements _$$LocalArticleErrorImplCopyWith<$Res> {
+  __$$LocalArticleErrorImplCopyWithImpl(_$LocalArticleErrorImpl _value,
+      $Res Function(_$LocalArticleErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$LocalArticleErrorImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocalArticleErrorImpl implements LocalArticleError {
+  const _$LocalArticleErrorImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'LocalArticleState.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocalArticleErrorImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocalArticleErrorImplCopyWith<_$LocalArticleErrorImpl> get copyWith =>
+      __$$LocalArticleErrorImplCopyWithImpl<_$LocalArticleErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<Article> articles) done,
+    required TResult Function(String error) error,
+    required TResult Function(String emptyMessage) empty,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<Article> articles)? done,
+    TResult? Function(String error)? error,
+    TResult? Function(String emptyMessage)? empty,
+  }) {
+    return error?.call(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<Article> articles)? done,
+    TResult Function(String error)? error,
+    TResult Function(String emptyMessage)? empty,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LocalArticleLoading value) loading,
+    required TResult Function(LocalArticleDone value) done,
+    required TResult Function(LocalArticleError value) error,
+    required TResult Function(LocalArticleEmpty value) empty,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LocalArticleLoading value)? loading,
+    TResult? Function(LocalArticleDone value)? done,
+    TResult? Function(LocalArticleError value)? error,
+    TResult? Function(LocalArticleEmpty value)? empty,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LocalArticleLoading value)? loading,
+    TResult Function(LocalArticleDone value)? done,
+    TResult Function(LocalArticleError value)? error,
+    TResult Function(LocalArticleEmpty value)? empty,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LocalArticleError implements LocalArticleState {
+  const factory LocalArticleError(final String error) = _$LocalArticleErrorImpl;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$$LocalArticleErrorImplCopyWith<_$LocalArticleErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocalArticleEmptyImplCopyWith<$Res> {
+  factory _$$LocalArticleEmptyImplCopyWith(_$LocalArticleEmptyImpl value,
+          $Res Function(_$LocalArticleEmptyImpl) then) =
+      __$$LocalArticleEmptyImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String emptyMessage});
+}
+
+/// @nodoc
+class __$$LocalArticleEmptyImplCopyWithImpl<$Res>
+    extends _$LocalArticleStateCopyWithImpl<$Res, _$LocalArticleEmptyImpl>
+    implements _$$LocalArticleEmptyImplCopyWith<$Res> {
+  __$$LocalArticleEmptyImplCopyWithImpl(_$LocalArticleEmptyImpl _value,
+      $Res Function(_$LocalArticleEmptyImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? emptyMessage = null,
+  }) {
+    return _then(_$LocalArticleEmptyImpl(
+      null == emptyMessage
+          ? _value.emptyMessage
+          : emptyMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocalArticleEmptyImpl implements LocalArticleEmpty {
+  const _$LocalArticleEmptyImpl(this.emptyMessage);
+
+  @override
+  final String emptyMessage;
+
+  @override
+  String toString() {
+    return 'LocalArticleState.empty(emptyMessage: $emptyMessage)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocalArticleEmptyImpl &&
+            (identical(other.emptyMessage, emptyMessage) ||
+                other.emptyMessage == emptyMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, emptyMessage);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocalArticleEmptyImplCopyWith<_$LocalArticleEmptyImpl> get copyWith =>
+      __$$LocalArticleEmptyImplCopyWithImpl<_$LocalArticleEmptyImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<Article> articles) done,
+    required TResult Function(String error) error,
+    required TResult Function(String emptyMessage) empty,
+  }) {
+    return empty(emptyMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<Article> articles)? done,
+    TResult? Function(String error)? error,
+    TResult? Function(String emptyMessage)? empty,
+  }) {
+    return empty?.call(emptyMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<Article> articles)? done,
+    TResult Function(String error)? error,
+    TResult Function(String emptyMessage)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(emptyMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LocalArticleLoading value) loading,
+    required TResult Function(LocalArticleDone value) done,
+    required TResult Function(LocalArticleError value) error,
+    required TResult Function(LocalArticleEmpty value) empty,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LocalArticleLoading value)? loading,
+    TResult? Function(LocalArticleDone value)? done,
+    TResult? Function(LocalArticleError value)? error,
+    TResult? Function(LocalArticleEmpty value)? empty,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LocalArticleLoading value)? loading,
+    TResult Function(LocalArticleDone value)? done,
+    TResult Function(LocalArticleError value)? error,
+    TResult Function(LocalArticleEmpty value)? empty,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LocalArticleEmpty implements LocalArticleState {
+  const factory LocalArticleEmpty(final String emptyMessage) =
+      _$LocalArticleEmptyImpl;
+
+  String get emptyMessage;
+  @JsonKey(ignore: true)
+  _$$LocalArticleEmptyImplCopyWith<_$LocalArticleEmptyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

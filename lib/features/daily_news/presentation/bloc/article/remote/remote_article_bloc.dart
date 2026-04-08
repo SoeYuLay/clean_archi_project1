@@ -13,11 +13,22 @@ class RemoteArticlesBloc extends Bloc<RemoteArticleEvent, RemoteArticleState> {
   void onGetArticles(GetArticles event, Emitter<RemoteArticleState> emit) async{
     final dataState = await _getArticleUseCase();
 
-    if(dataState is DataSuccess && dataState.data!.isNotEmpty){
-      emit(RemoteArticleDone(dataState.data!));
+  dataState.fold(
+    (failure) => emit(RemoteArticleError(failure.errorMessage)),
+    (articles) {
+      if(articles.isNotEmpty){
+        emit(RemoteArticleDone(articles));
+      }else{
+        emit(const RemoteArticleError('No articles found'));
+      }
     }
-    if(dataState is DataFailed){
-      emit(RemoteArticleError(dataState.error.toString()));
-    }
+  );
+
+    // if(dataState is DataSuccess && dataState.data!.isNotEmpty){
+    //   emit(RemoteArticleDone(dataState.data!));
+    // }
+    // if(dataState is DataFailed){
+    //   emit(RemoteArticleError(dataState.error.toString()));
+    // }
   }
 }
