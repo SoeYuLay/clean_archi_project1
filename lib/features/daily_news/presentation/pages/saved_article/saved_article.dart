@@ -39,21 +39,38 @@ class SavedArticles extends HookWidget {
     return BlocBuilder<LocalArticleBloc,LocalArticleState>
     (
       builder: (context,state){
-        if(state is LocalArticleLoading){
-          return const Center(child: CircularProgressIndicator());
-        }else if(state is LocalArticleDone){
-          return _buildArticlesList(state.articles);
-        }
-        return Container();
+        // if(state is LocalArticleLoading){
+        //   return const Center(child: CircularProgressIndicator());
+        // }else if(state is LocalArticleDone){
+        //   return _buildArticlesList(state.articles);
+        // }else if(state is LocalArticleEmpty){
+        //   return Center(
+        //     child: Text(state.emptyMessage,
+        //       style: const TextStyle(color: Colors.black)));
+        // }
+        return state.when(
+          loading: () => const Center(child: CircularProgressIndicator()),
+          done: (articles) => _buildArticlesList(articles),
+          error: (error) => Center(
+            child: Text(
+              error,
+              style: const TextStyle(color: Colors.black),
+            ),
+          ),
+          empty: (emptyMessage) => Center(
+            child: Text(
+              emptyMessage,
+              style: const TextStyle(color: Colors.black),
+            ),
+          )
+        );
+
+        // return Container();
       });
   }
 
   Widget _buildArticlesList(List<Article> articles) {
-    if(articles.isEmpty){
-      return const Center(
-        child: Text('NO SAVED ARTICLES',
-          style: TextStyle(color: Colors.black)));
-    }
+    
     return ListView.builder(
       itemCount: articles.length,
       itemBuilder: (context, index){

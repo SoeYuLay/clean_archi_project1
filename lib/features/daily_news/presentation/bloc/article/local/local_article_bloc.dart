@@ -23,19 +23,50 @@ class LocalArticleBloc extends Bloc<LocalArticleEvent, LocalArticleState> {
 
   void onGetSavedArticles(GetSavedArticles event, Emitter<LocalArticleState> emit) async {
     final articles = await _getSavedArticleUseCase();
-    emit(LocalArticleDone(articles));
+
+    articles.fold(
+    (failure) => emit(LocalArticleError(failure.errorMessage)),
+    (articles) {
+      if(articles.isNotEmpty){
+        emit(LocalArticleDone(articles));
+      }else if(articles.isEmpty){
+        emit(const LocalArticleEmpty('No Saved Articles'));
+      }
+    }
+  );
   }
 
   void onRemoveArticle(RemoveArticle removeArticle, Emitter<LocalArticleState> emit) async {
     await _removeArticleUseCase(params: removeArticle.article);
     final articles = await _getSavedArticleUseCase();
-    emit(LocalArticleDone(articles));
+    // emit(LocalArticleDone(articles));
+    articles.fold(
+    (failure) => emit(LocalArticleError(failure.errorMessage)),
+    (articles) {
+      if(articles.isNotEmpty){
+        emit(LocalArticleDone(articles));
+      }else{
+        emit(const LocalArticleError('No articles found'));
+      }
+    }
+  );
   }
 
   void onSaveArticle( SaveArticle saveArticle, Emitter<LocalArticleState> emit) async {
     await _saveArticleUseCase(params: saveArticle.article);
     final articles = await _getSavedArticleUseCase();
-    emit(LocalArticleDone(articles));
+    // emit(LocalArticleDone(articles));
+
+    articles.fold(
+    (failure) => emit(LocalArticleError(failure.errorMessage)),
+    (articles) {
+      if(articles.isNotEmpty){
+        emit(LocalArticleDone(articles));
+      }else{
+        emit(const LocalArticleError('No articles found'));
+      }
+    }
+  );
   }
 
 }

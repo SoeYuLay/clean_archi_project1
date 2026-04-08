@@ -37,6 +37,7 @@
 //   }
 // }
 
+import 'package:clean_archi_project1/core/error/failure.dart';
 import 'package:clean_archi_project1/core/resources/constants/constants.dart';
 import 'package:clean_archi_project1/core/resources/data_state.dart';
 import 'package:clean_archi_project1/features/daily_news/data/data_sources/local/app_database.dart';
@@ -45,6 +46,7 @@ import 'package:clean_archi_project1/features/daily_news/data/mappers/article_ma
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/repository/article_repository.dart';
 import 'package:dio/dio.dart';
+import 'package:either_dart/either.dart';
 
 class ArticleRepositoryImpl implements ArticleRepository {
   final NewsApiService _newsApiService;
@@ -52,7 +54,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
   ArticleRepositoryImpl(this._newsApiService, this._appDatabase);
 
   @override
-  Future<DataState<List<Article>>> getNewsArticles() async {
+  Future<Either<Failure, List<Article>>> getNewsArticles() async {
     try {
       final articlesDto = await _newsApiService.getNewsArticle(
         apiKey: newsAPIKey,
@@ -63,44 +65,45 @@ class ArticleRepositoryImpl implements ArticleRepository {
       //map DTO to Domain
       final articles = articlesDto.map((dto) => dto.toDomain()).toList();
 
-      return DataSuccess(articles);
+      return Right(articles);
 
     } on DioException catch (e) {
-      return DataFailed(e);
+      return Left(ServerFailure('Failed to fetch articles'));
     } catch (e) {
-      return DataFailed(
-        DioException(
-          requestOptions: RequestOptions(path: '$newsAPIBaseURL/top-headlines'),
-          error: e,
-          type: DioExceptionType.unknown,
-        ),
-      );
+      return Left(ServerFailure('An unexpected error occurred'));
+    }
+  }
+
+   Future<Either<Failure, void>> deleteArticle(Article article) async {
+    try {
+      final entity = article.toDb();
+      await _appDatabase.articleDao.deleteArticle(entity);
+      return const Right(null); // success, no data to return
+    } catch (e) {
+      return Left(CacheFailure(e.toString())); // failure branch
     }
   }
   
   @override
-  Future<void> deleteArticle(Article article) async{
-    final entity = article.toDb();
-    await _appDatabase.articleDao.deleteArticle(entity);
-  }
-  
-  @override
-  Future<List<Article>> getSavedArticles() async{
-    final entities = await _appDatabase.articleDao.getAllArticles();
-    return entities.map((e) => e.toDomain()).toList();
-  }
-  
-  @override
-  Future<void> saveArticle(Article article) async {
+  Future<Either<Failure, List<Article>>> getSavedArticles() async {
   try {
-    final entity = article.toDb();
-
-    await _appDatabase.articleDao.insertArticle(entity);
-    
-  } catch (e, stackTrace) {
-    print('Error saving article: $e');
-    print(stackTrace);
+    final entities = await _appDatabase.articleDao.getAllArticles();
+    final articles = entities.map((e) => e.toDomain()).toList();
+    return Right(articles); // success branch
+  } catch (e) {
+    return Left(CacheFailure(e.toString())); // failure branch
   }
-}
+  }
+  
+  @override
+ Future<Either<Failure, void>> saveArticle(Article article) async {
+    try {
+      final entity = article.toDb();
+      await _appDatabase.articleDao.insertArticle(entity);
+      return const Right(null); // success, no data to return
+    } catch (e) {
+      return Left(CacheFailure(e.toString())); // failure branch
+    }
+  }
 
 }
