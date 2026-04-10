@@ -24,7 +24,8 @@ void main() {
     articleRepository = ArticleRepositoryImpl(mockApi, mockDao);
   });
 
-  //success (apiService)
+  //apiService
+  //success (get all articles)
   test('Return list of articles if success ', () async {
     when(mockApi.getNewsArticle(
       apiKey: anyNamed('apiKey'),
@@ -42,7 +43,7 @@ void main() {
     )).called(1);
   });
 
-  //failure (apiService)
+  //failure (get all articles)
   test('Return list of articles if fail ', () async {
     when(mockApi.getNewsArticle(
       apiKey: anyNamed('apiKey'),
@@ -66,5 +67,76 @@ void main() {
     )).called(1);
   });
 
-  
+  //DAO
+  //success (save article)
+  test('Save Article Successfully', ()async {
+    when(mockDao.insertArticle(any)).thenAnswer((_) async {});
+
+    final result = await articleRepository.saveArticle(TestData.testArticle[0]);
+
+    expect(result, isA<Right>());
+    expect((result as Right).value, isNull);
+
+    verify(mockDao.insertArticle(any)).called(1);
+  });
+
+  //failure (save article)
+  test('Save Article Failure', () async {
+    when(mockDao.insertArticle(any)).thenThrow(Exception('DB error'));
+
+    final result = await articleRepository.saveArticle(TestData.testArticle[0]);
+
+    expect(result, isA<Left>());
+    expect((result as Left).value, isA<CacheFailure>());
+
+    verify(mockDao.insertArticle(any)).called(1);
+  });
+
+  //success (delete article)
+  test('Delete Article Successfully', ()async {
+    when(mockDao.deleteArticle(any)).thenAnswer((_) async {});
+
+    final result = await articleRepository.deleteArticle(TestData.testArticle[0]);
+
+    expect(result, isA<Right>());
+    expect((result as Right).value, isNull);
+
+    verify(mockDao.deleteArticle(any)).called(1);
+  });
+
+  //failure (delete article)
+  test('Delete Article Failure', () async {
+    when(mockDao.deleteArticle(any)).thenThrow(Exception('DB error'));
+
+    final result = await articleRepository.deleteArticle(TestData.testArticle[0]);
+
+    expect(result, isA<Left>());
+    expect((result as Left).value, isA<CacheFailure>());
+
+    verify(mockDao.deleteArticle(any)).called(1);
+  });
+
+  //success (get saved article)
+  test('Get List of Saved Articles Successfully', ()async {
+    when(mockDao.getAllArticles()).thenAnswer((_) async => TestData.testArticleEntity);
+
+    final result = await articleRepository.getSavedArticles();
+
+    expect(result, isA<Right>());
+    expect((result as Right).value, TestData.testArticle);
+
+    verify(mockDao.getAllArticles()).called(1);
+  });
+
+  //failure (get saved article)
+  test('Get List of Saved Articles Failure', ()async {
+    when(mockDao.getAllArticles()).thenThrow(Exception('DB error'));
+
+    final result = await articleRepository.getSavedArticles();
+
+    expect(result, isA<Left>());
+    expect((result as Left).value, isA<CacheFailure>());
+
+    verify(mockDao.getAllArticles()).called(1);
+  });
 }
