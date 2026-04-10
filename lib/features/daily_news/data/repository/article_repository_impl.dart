@@ -40,6 +40,7 @@
 import 'package:clean_archi_project1/core/error/failure.dart';
 import 'package:clean_archi_project1/core/resources/constants/constants.dart';
 import 'package:clean_archi_project1/core/resources/data_state.dart';
+import 'package:clean_archi_project1/features/daily_news/data/data_sources/local/DAO/article_dao.dart';
 import 'package:clean_archi_project1/features/daily_news/data/data_sources/local/app_database.dart';
 import 'package:clean_archi_project1/features/daily_news/data/data_sources/remote/news_api_service.dart';
 import 'package:clean_archi_project1/features/daily_news/data/mappers/article_mapper.dart';
@@ -50,8 +51,9 @@ import 'package:either_dart/either.dart';
 
 class ArticleRepositoryImpl implements ArticleRepository {
   final NewsApiService _newsApiService;
-  final AppDatabase _appDatabase;
-  ArticleRepositoryImpl(this._newsApiService, this._appDatabase);
+  // final AppDatabase _appDatabase;
+  final ArticleDao _articleDao;
+  ArticleRepositoryImpl(this._newsApiService, this._articleDao);
 
   @override
   Future<Either<Failure, List<Article>>> getNewsArticles() async {
@@ -68,7 +70,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
       return Right(articles);
 
     } on DioException catch (e) {
-      return Left(ServerFailure('Failed to fetch articles'));
+      return Left(ServerFailure('Article Error'));
     } catch (e) {
       return Left(ServerFailure('An unexpected error occurred'));
     }
@@ -77,7 +79,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
    Future<Either<Failure, void>> deleteArticle(Article article) async {
     try {
       final entity = article.toDb();
-      await _appDatabase.articleDao.deleteArticle(entity);
+      await _articleDao.deleteArticle(entity);
       return const Right(null); // success, no data to return
     } catch (e) {
       return Left(CacheFailure(e.toString())); // failure branch
@@ -87,7 +89,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
   @override
   Future<Either<Failure, List<Article>>> getSavedArticles() async {
   try {
-    final entities = await _appDatabase.articleDao.getAllArticles();
+    final entities = await _articleDao.getAllArticles();
     final articles = entities.map((e) => e.toDomain()).toList();
     return Right(articles); // success branch
   } catch (e) {
@@ -99,7 +101,7 @@ class ArticleRepositoryImpl implements ArticleRepository {
  Future<Either<Failure, void>> saveArticle(Article article) async {
     try {
       final entity = article.toDb();
-      await _appDatabase.articleDao.insertArticle(entity);
+      await _articleDao.insertArticle(entity);
       return const Right(null); // success, no data to return
     } catch (e) {
       return Left(CacheFailure(e.toString())); // failure branch
