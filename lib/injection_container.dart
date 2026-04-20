@@ -9,7 +9,7 @@ import 'package:clean_archi_project1/features/daily_news/domain/usecases/get_sav
 import 'package:clean_archi_project1/features/daily_news/domain/usecases/remove_article.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/usecases/save_article.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
-import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
+import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/remote/remote_article_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -40,7 +40,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<RemoveArticleUseCase>(RemoveArticleUseCase(sl()));
 
   //Blocs
-  sl.registerFactory<RemoteArticlesBloc>(() => RemoteArticlesBloc(sl()));
+  sl.registerFactory<RemoteArticlesCubit>(() => RemoteArticlesCubit(sl()));
 
   sl.registerFactory<LocalArticleBloc>(() => LocalArticleBloc(sl(), sl(), sl()));
 }
