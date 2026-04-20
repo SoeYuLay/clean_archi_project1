@@ -1,5 +1,5 @@
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
-import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/remote/remote_article_cubit.dart';
+import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/remote/remote_article_state.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/widgets/article_tile.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class DailyNews extends StatelessWidget {
   }
 
   _buildBody(){
-    return BlocBuilder<RemoteArticlesCubit, RemoteArticleState>
+    return BlocBuilder<RemoteArticlesBloc,RemoteArticleState>
     (
       builder: (_,state){
         if(state is RemoteArticleLoading){

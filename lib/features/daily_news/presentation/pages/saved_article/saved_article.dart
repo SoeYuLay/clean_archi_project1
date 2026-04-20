@@ -1,5 +1,6 @@
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
-import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/local/local_article_cubit.dart';
+import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
+import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/local/local_article_event.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/local/local_article_state.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/widgets/article_tile.dart';
 import 'package:clean_archi_project1/injection_container.dart';
@@ -14,7 +15,7 @@ class SavedArticles extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<LocalArticleCubit>()..getSavedArticles(),
+      create: (_) => sl<LocalArticleBloc>()..add(GetSavedArticles()),
       child: Scaffold(
         appBar: _buildAppBar(),
         body: _buildBody()
@@ -35,7 +36,7 @@ class SavedArticles extends HookWidget {
   }
 
   Widget _buildBody(){
-    return BlocBuilder<LocalArticleCubit,LocalArticleState>
+    return BlocBuilder<LocalArticleBloc,LocalArticleState>
     (
       builder: (context,state){
         // if(state is LocalArticleLoading){
@@ -88,7 +89,7 @@ class SavedArticles extends HookWidget {
   }
 
   void _onRemoveArticle(BuildContext context, Article article) {
-    BlocProvider.of<LocalArticleCubit>(context).onRemoveArticle(article);
+    BlocProvider.of<LocalArticleBloc>(context).add(RemoveArticle(article));
   }
 
   void _onArticlePressed(BuildContext context, Article article) {
