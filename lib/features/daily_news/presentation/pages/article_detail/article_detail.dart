@@ -61,7 +61,7 @@ class ArticleDetailsView extends HookWidget {
               const Icon(Icons.calendar_today_outlined, size: 16),
               const SizedBox(width: 4),
               Text(
-                article.publishedAt!,
+                article.publishedAt,
                 style: const TextStyle(fontSize: 12),
               ),
             ],
@@ -77,7 +77,7 @@ class ArticleDetailsView extends HookWidget {
       width: double.maxFinite,
       margin: const EdgeInsets.only(top: 14),
       child: Image.network(
-        article.urlToImage!,
+        article.urlToImage,
         fit: BoxFit.cover,
       ),
     );

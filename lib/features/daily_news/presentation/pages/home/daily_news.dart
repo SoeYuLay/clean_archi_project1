@@ -50,10 +50,10 @@ class DailyNews extends StatelessWidget {
             itemBuilder: (context, index){
               return GestureDetector(
                 onTap: () => _onArticlePressed(context,state.articles![index]),
-                child: ArticleWidget(article: state.articles![index],),
+                child: ArticleWidget(article: state.articles[index],),
               );
             },
-            itemCount: state.articles!.length,);
+            itemCount: state.articles.length,);
         }
         return const SizedBox();
       });

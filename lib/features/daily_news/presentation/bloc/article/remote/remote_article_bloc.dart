@@ -1,4 +1,3 @@
-import 'package:clean_archi_project1/core/resources/data_state.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/usecases/get_article.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/remote/remote_article_event.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/remote/remote_article_state.dart';
