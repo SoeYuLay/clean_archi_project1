@@ -1,27 +1,21 @@
 import 'package:clean_archi_project1/features/daily_news/domain/usecases/get_saved_article.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/usecases/remove_article.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/usecases/save_article.dart';
-import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/local/local_article_event.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/local/local_article_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LocalArticleBloc extends Bloc<LocalArticleEvent, LocalArticleState> {
+class LocalArticleCubit extends Cubit<LocalArticleState> {
   final GetSavedArticleUseCase _getSavedArticleUseCase;
   final SaveArticleUseCase _saveArticleUseCase;
   final RemoveArticleUseCase _removeArticleUseCase;
 
-  LocalArticleBloc(
+  LocalArticleCubit(
     this._getSavedArticleUseCase,
     this._saveArticleUseCase,
     this._removeArticleUseCase,
-  ) : super(const LocalArticleLoading()) {
-  on <GetSavedArticles>(onGetSavedArticles);
-  on <RemoveArticle>(onRemoveArticle);
-  on <SaveArticle>(onSaveArticle);
-  }
+  ) : super(const LocalArticleLoading());
 
-
-  void onGetSavedArticles(GetSavedArticles event, Emitter<LocalArticleState> emit) async {
+  Future<void> getSavedArticles() async {
     final articles = await _getSavedArticleUseCase();
 
     articles.fold(
@@ -36,10 +30,10 @@ class LocalArticleBloc extends Bloc<LocalArticleEvent, LocalArticleState> {
   );
   }
 
-  void onRemoveArticle(RemoveArticle removeArticle, Emitter<LocalArticleState> emit) async {
-    await _removeArticleUseCase(params: removeArticle.article);
+  Future<void> onRemoveArticle(removeArticle) async {
+    await _removeArticleUseCase(params: removeArticle);
     final articles = await _getSavedArticleUseCase();
-    // emit(LocalArticleDone(articles));
+    
     articles.fold(
     (failure) => emit(LocalArticleError(failure.errorMessage)),
     (articles) {
@@ -52,10 +46,9 @@ class LocalArticleBloc extends Bloc<LocalArticleEvent, LocalArticleState> {
   );
   }
 
-  void onSaveArticle( SaveArticle saveArticle, Emitter<LocalArticleState> emit) async {
-    await _saveArticleUseCase(params: saveArticle.article);
+  Future<void> onSaveArticle(saveArticle) async {
+    await _saveArticleUseCase(params: saveArticle);
     final articles = await _getSavedArticleUseCase();
-    // emit(LocalArticleDone(articles));
 
     articles.fold(
     (failure) => emit(LocalArticleError(failure.errorMessage)),

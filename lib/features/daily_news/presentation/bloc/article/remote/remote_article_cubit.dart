@@ -4,8 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RemoteArticlesCubit extends Cubit<RemoteArticleState> {
   final GetArticleUseCase _getArticleUseCase;
-  RemoteArticlesCubit(this._getArticleUseCase) : super(const RemoteArticleLoading()){
-  }
+  RemoteArticlesCubit(this._getArticleUseCase) : super(const RemoteArticleLoading());
 
   Future<void> getArticles() async {
     final dataState = await _getArticleUseCase();
