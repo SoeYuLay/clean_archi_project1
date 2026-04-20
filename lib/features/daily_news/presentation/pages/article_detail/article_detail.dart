@@ -1,6 +1,5 @@
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
-import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/local/local_article_bloc.dart';
-import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/local/local_article_event.dart';
+import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/local/local_article_cubit.dart';
 import 'package:clean_archi_project1/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +12,7 @@ class ArticleDetailsView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<LocalArticleBloc>(),
+      create: (_) => sl<LocalArticleCubit>(),
       child: Scaffold(
         appBar: _buildAppBar(),
         body: _buildBody(),
@@ -52,7 +51,7 @@ class ArticleDetailsView extends HookWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            article.title!,
+            article.title,
             style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 14),
@@ -109,11 +108,8 @@ class ArticleDetailsView extends HookWidget {
   }
 
   void _onFloatingActionButtonPressed(BuildContext context) {
-    BlocProvider.of<LocalArticleBloc>(context).add(SaveArticle(article));
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   const SnackBar(
-    //     backgroundColor: Colors.black,
-    //     content: Text('Article saved successfully!')),
-    // );
+    // BlocProvider.of<LocalArticleCubit>(context).add(SaveArticle(article));
+    BlocProvider.of<LocalArticleCubit>(context).onSaveArticle(article);
+    
   }
 }
