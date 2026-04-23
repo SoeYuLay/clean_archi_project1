@@ -8,7 +8,7 @@ class ArticleEntity {
   final String? description;
   final String? urlToImage;
   @primaryKey
-  final String url;
+  final String? url;
   final String? publishedAt;
   final String? content;
 

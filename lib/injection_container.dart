@@ -25,22 +25,22 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<Dio>(Dio());
 
   //Dependencies
-  sl.registerSingleton<NewsApiService>(NewsApiService(sl()));
+  sl.registerSingleton<NewsApiService>(NewsApiService(sl<Dio>()));
 
   // sl.registerSingleton<ArticleRepository>(FakeArticleRepositoryImpl());
-  sl.registerSingleton<ArticleRepository>(ArticleRepositoryImpl(sl(),sl()));
+  sl.registerSingleton<ArticleRepository>(ArticleRepositoryImpl(sl<NewsApiService>(),sl<ArticleDao>()));
 
   //UseCases
-  sl.registerSingleton<GetArticleUseCase>(GetArticleUseCase(sl()));
+  sl.registerSingleton<GetArticleUseCase>(GetArticleUseCase(sl<ArticleRepository>()));
 
-  sl.registerSingleton<GetSavedArticleUseCase>(GetSavedArticleUseCase(sl()));
+  sl.registerSingleton<GetSavedArticleUseCase>(GetSavedArticleUseCase(sl<ArticleRepository>()));
 
-  sl.registerSingleton<SaveArticleUseCase>(SaveArticleUseCase(sl()));
+  sl.registerSingleton<SaveArticleUseCase>(SaveArticleUseCase(sl<ArticleRepository>()));
 
-  sl.registerSingleton<RemoveArticleUseCase>(RemoveArticleUseCase(sl()));
+  sl.registerSingleton<RemoveArticleUseCase>(RemoveArticleUseCase(sl<ArticleRepository>()));
 
   //Blocs
-  sl.registerFactory<RemoteArticlesBloc>(() => RemoteArticlesBloc(sl()));
+  sl.registerFactory<RemoteArticlesBloc>(() => RemoteArticlesBloc(sl<GetArticleUseCase>()));
 
-  sl.registerFactory<LocalArticleBloc>(() => LocalArticleBloc(sl(), sl(), sl()));
+  sl.registerFactory<LocalArticleBloc>(() => LocalArticleBloc(sl<GetSavedArticleUseCase>(), sl<SaveArticleUseCase>(), sl<RemoveArticleUseCase>()));
 }

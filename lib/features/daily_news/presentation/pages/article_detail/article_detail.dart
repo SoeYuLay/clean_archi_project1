@@ -52,7 +52,7 @@ class ArticleDetailsView extends HookWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            article.title!,
+            article.title,
             style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 14),
@@ -61,7 +61,7 @@ class ArticleDetailsView extends HookWidget {
               const Icon(Icons.calendar_today_outlined, size: 16),
               const SizedBox(width: 4),
               Text(
-                article.publishedAt!,
+                article.publishedAt,
                 style: const TextStyle(fontSize: 12),
               ),
             ],
@@ -77,7 +77,7 @@ class ArticleDetailsView extends HookWidget {
       width: double.maxFinite,
       margin: const EdgeInsets.only(top: 14),
       child: Image.network(
-        article.urlToImage!,
+        article.urlToImage,
         fit: BoxFit.cover,
       ),
     );
@@ -87,7 +87,7 @@ class ArticleDetailsView extends HookWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Text(
-        '${article.description ?? ''}\n\n${article.content ?? ''}',
+        '${article.description}\n\n${article.content}',
         style: const TextStyle(fontSize: 16),
       ),
     );
