@@ -1,3 +1,4 @@
+import 'package:clean_archi_project1/features/auth/presentation/sign_in.dart';
 import 'package:clean_archi_project1/features/auth/presentation/sign_up.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/pages/article_detail/article_detail.dart';
@@ -24,10 +25,16 @@ final GoRouter appRouter = GoRouter(
       },
     ),
     GoRoute(
-      // path: '/SignUp',
-      path: '/',
+      path: '/SignUp',
       builder: (context, state) {
         return const SignUp();
+      },
+    ),
+    GoRoute(
+      // path: '/SignIn',
+      path: '/',
+      builder: (context, state) {
+        return const SignIn();
       },
     ),
   ],
