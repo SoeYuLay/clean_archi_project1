@@ -1,3 +1,4 @@
+import 'package:clean_archi_project1/features/auth/presentation/sign_up.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/pages/article_detail/article_detail.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/pages/home/daily_news.dart';
@@ -7,7 +8,8 @@ import 'package:go_router/go_router.dart';
 final GoRouter appRouter = GoRouter(
   routes: [
     GoRoute(
-      path: '/',
+      // path: '/',
+      path: '/DailyNews',
       builder: (context, state) => const DailyNews(),
     ),
     GoRoute(
@@ -19,6 +21,13 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         final article = state.extra as Article;
         return ArticleDetailsView(article: article);
+      },
+    ),
+    GoRoute(
+      // path: '/SignUp',
+      path: '/',
+      builder: (context, state) {
+        return const SignUp();
       },
     ),
   ],
