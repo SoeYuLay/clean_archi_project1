@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class AuthTextField extends StatelessWidget {
   String fieldName;
   String hintText;
-  AuthTextField({super.key, required this.fieldName, required this.hintText});
+  TextEditingController controller;
+  AuthTextField({super.key, required this.controller, required this.fieldName, required this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,7 @@ class AuthTextField extends StatelessWidget {
         Text(fieldName, style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500)),
         const SizedBox(height: 10),
         TextField(
+          controller: controller,
           obscureText: fieldName.toLowerCase() == 'password' ? true : false,
           decoration: InputDecoration(
             hintText: hintText,

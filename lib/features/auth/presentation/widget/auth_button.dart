@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AuthButton extends StatelessWidget {
   String buttonText;
-  AuthButton({super.key, required this.buttonText});
+  final VoidCallback onPressed; 
+  AuthButton({super.key, required this.buttonText, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class AuthButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         backgroundColor: Colors.blueAccent
       ),
-      onPressed: (){}, 
+      onPressed: onPressed, 
       child: Text(buttonText, style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500,color: Colors.white))
     );
   }

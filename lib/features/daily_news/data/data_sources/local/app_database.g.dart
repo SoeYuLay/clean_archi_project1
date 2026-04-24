@@ -96,7 +96,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `articles` (`title` TEXT, `author` TEXT, `description` TEXT, `urlToImage` TEXT, `url` TEXT NOT NULL, `publishedAt` TEXT, `content` TEXT, PRIMARY KEY (`url`))');
+            'CREATE TABLE IF NOT EXISTS `articles` (`title` TEXT, `author` TEXT, `description` TEXT, `urlToImage` TEXT, `url` TEXT, `publishedAt` TEXT, `content` TEXT, PRIMARY KEY (`url`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -159,7 +159,7 @@ class _$ArticleDao extends ArticleDao {
             author: row['author'] as String?,
             description: row['description'] as String?,
             urlToImage: row['urlToImage'] as String?,
-            url: row['url'] as String,
+            url: row['url'] as String?,
             publishedAt: row['publishedAt'] as String?,
             content: row['content'] as String?));
   }
