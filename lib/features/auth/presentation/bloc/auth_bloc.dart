@@ -48,7 +48,7 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
       final result = await _signInUserUseCase(event.email, event.password);
 
       result.fold(
-        (failure) => emit(const AuthBlocState.unauthenticated()),
+        (failure) => emit(FailureAuthState(error: failure.errorMessage)),
         (user) => emit(AuthBlocState.authenticated(user: user))
       );
       
@@ -62,7 +62,7 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
       emit(const LoadingAuthState());
       final result = await _signUpUserUseCase(event.email, event.password);
       result.fold(
-        (failure) => emit(const AuthBlocState.unauthenticated()),
+        (failure) => emit(FailureAuthState(error: failure.errorMessage)),
         (user) => emit(AuthBlocState.authenticated(user: user))
       );
     } catch (e) {
