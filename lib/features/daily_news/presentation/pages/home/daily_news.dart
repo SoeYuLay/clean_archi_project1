@@ -1,3 +1,6 @@
+import 'package:clean_archi_project1/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:clean_archi_project1/features/auth/presentation/bloc/auth_bloc_event.dart';
+import 'package:clean_archi_project1/features/auth/presentation/bloc/auth_bloc_state.dart';
 import 'package:clean_archi_project1/features/daily_news/domain/entities/article.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/remote/remote_article_bloc.dart';
 import 'package:clean_archi_project1/features/daily_news/presentation/bloc/article/remote/remote_article_state.dart';
@@ -11,55 +14,75 @@ class DailyNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppbar(context),
-      body: _buildBody()
-    );
+    return BlocListener<AuthBloc, AuthBlocState>(
+        listener: (context, state) {
+          state.whenOrNull(unauthenticated: () {
+            context.go('/SignIn');
+          });
+        },
+        child: Scaffold(appBar: _buildAppbar(context), body: _buildBody()));
   }
 
   _buildAppbar(BuildContext context) {
     return AppBar(
-        title: const Text('Daily News',
-            style: TextStyle(
-                color: Colors.black),
+      title: const Text(
+        'Daily News',
+        style: TextStyle(color: Colors.black),
       ),
       actions: [
         GestureDetector(
           onTap: () => _onShowSavedArticles(context),
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: Icon(Icons.bookmark_border_outlined, color: Colors.black,),
+            child: Icon(
+              Icons.bookmark_border_outlined,
+              color: Colors.black,
+            ),
           ),
-        )
+        ),
+        GestureDetector(
+          onTap: () {
+            context.read<AuthBloc>().add(AuthBlocEvent.signOut());
+          },
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: Icon(
+              Icons.logout,
+              color: Colors.black,
+            ),
+          ),
+        ),
       ],
-      );
+    );
   }
 
-  _buildBody(){
-    return BlocBuilder<RemoteArticlesBloc,RemoteArticleState>
-    (
-      builder: (_,state){
-        if(state is RemoteArticleLoading){
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (state is RemoteArticleError) {
-          return const Center(child:Icon(Icons.refresh));
-        }
-        if(state is RemoteArticleDone){
-          return ListView.builder(
-            itemBuilder: (context, index){
-              return GestureDetector(
-                onTap: () => _onArticlePressed(context,state.articles![index]),
-                child: ArticleWidget(article: state.articles[index],),
-              );
-            },
-            itemCount: state.articles.length,);
-        }
-        return const SizedBox();
-      });
+  _buildBody() {
+    return BlocBuilder<RemoteArticlesBloc, RemoteArticleState>(
+        builder: (_, state) {
+      if (state is RemoteArticleLoading) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      if (state is RemoteArticleError) {
+        return const Center(child: Icon(Icons.refresh));
+      }
+      if (state is RemoteArticleDone) {
+        return ListView.builder(
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () => _onArticlePressed(context, state.articles[index]),
+              child: ArticleWidget(
+                article: state.articles[index],
+              ),
+            );
+          },
+          itemCount: state.articles.length,
+        );
+      }
+      return const SizedBox();
+    });
   }
 
-  void _onArticlePressed(BuildContext context,Article article){
+  void _onArticlePressed(BuildContext context, Article article) {
     // Navigator.pushNamed(context, '/ArticleDetails',arguments: article);
     context.go('/ArticleDetails', extra: article);
   }
