@@ -23,6 +23,7 @@ mixin _$AuthBlocEvent {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function(String email) resetPassword,
+    required TResult Function() signUpWithGoogle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$AuthBlocEvent {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function(String email)? resetPassword,
+    TResult? Function()? signUpWithGoogle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$AuthBlocEvent {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function(String email)? resetPassword,
+    TResult Function()? signUpWithGoogle,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$AuthBlocEvent {
     required TResult Function(SignUpEvent value) signUp,
     required TResult Function(SignOutEvent value) signOut,
     required TResult Function(ResetPwdEvent value) resetPassword,
+    required TResult Function(SignUpWithGoogle value) signUpWithGoogle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$AuthBlocEvent {
     TResult? Function(SignUpEvent value)? signUp,
     TResult? Function(SignOutEvent value)? signOut,
     TResult? Function(ResetPwdEvent value)? resetPassword,
+    TResult? Function(SignUpWithGoogle value)? signUpWithGoogle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$AuthBlocEvent {
     TResult Function(SignUpEvent value)? signUp,
     TResult Function(SignOutEvent value)? signOut,
     TResult Function(ResetPwdEvent value)? resetPassword,
+    TResult Function(SignUpWithGoogle value)? signUpWithGoogle,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -136,6 +142,7 @@ class _$LoadCurrentUserEventImpl implements LoadCurrentUserEvent {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function(String email) resetPassword,
+    required TResult Function() signUpWithGoogle,
   }) {
     return loadCurrentUser();
   }
@@ -148,6 +155,7 @@ class _$LoadCurrentUserEventImpl implements LoadCurrentUserEvent {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function(String email)? resetPassword,
+    TResult? Function()? signUpWithGoogle,
   }) {
     return loadCurrentUser?.call();
   }
@@ -160,6 +168,7 @@ class _$LoadCurrentUserEventImpl implements LoadCurrentUserEvent {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function(String email)? resetPassword,
+    TResult Function()? signUpWithGoogle,
     required TResult orElse(),
   }) {
     if (loadCurrentUser != null) {
@@ -176,6 +185,7 @@ class _$LoadCurrentUserEventImpl implements LoadCurrentUserEvent {
     required TResult Function(SignUpEvent value) signUp,
     required TResult Function(SignOutEvent value) signOut,
     required TResult Function(ResetPwdEvent value) resetPassword,
+    required TResult Function(SignUpWithGoogle value) signUpWithGoogle,
   }) {
     return loadCurrentUser(this);
   }
@@ -188,6 +198,7 @@ class _$LoadCurrentUserEventImpl implements LoadCurrentUserEvent {
     TResult? Function(SignUpEvent value)? signUp,
     TResult? Function(SignOutEvent value)? signOut,
     TResult? Function(ResetPwdEvent value)? resetPassword,
+    TResult? Function(SignUpWithGoogle value)? signUpWithGoogle,
   }) {
     return loadCurrentUser?.call(this);
   }
@@ -200,6 +211,7 @@ class _$LoadCurrentUserEventImpl implements LoadCurrentUserEvent {
     TResult Function(SignUpEvent value)? signUp,
     TResult Function(SignOutEvent value)? signOut,
     TResult Function(ResetPwdEvent value)? resetPassword,
+    TResult Function(SignUpWithGoogle value)? signUpWithGoogle,
     required TResult orElse(),
   }) {
     if (loadCurrentUser != null) {
@@ -291,6 +303,7 @@ class _$SignInEventImpl implements SignInEvent {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function(String email) resetPassword,
+    required TResult Function() signUpWithGoogle,
   }) {
     return signIn(email, password);
   }
@@ -303,6 +316,7 @@ class _$SignInEventImpl implements SignInEvent {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function(String email)? resetPassword,
+    TResult? Function()? signUpWithGoogle,
   }) {
     return signIn?.call(email, password);
   }
@@ -315,6 +329,7 @@ class _$SignInEventImpl implements SignInEvent {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function(String email)? resetPassword,
+    TResult Function()? signUpWithGoogle,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -331,6 +346,7 @@ class _$SignInEventImpl implements SignInEvent {
     required TResult Function(SignUpEvent value) signUp,
     required TResult Function(SignOutEvent value) signOut,
     required TResult Function(ResetPwdEvent value) resetPassword,
+    required TResult Function(SignUpWithGoogle value) signUpWithGoogle,
   }) {
     return signIn(this);
   }
@@ -343,6 +359,7 @@ class _$SignInEventImpl implements SignInEvent {
     TResult? Function(SignUpEvent value)? signUp,
     TResult? Function(SignOutEvent value)? signOut,
     TResult? Function(ResetPwdEvent value)? resetPassword,
+    TResult? Function(SignUpWithGoogle value)? signUpWithGoogle,
   }) {
     return signIn?.call(this);
   }
@@ -355,6 +372,7 @@ class _$SignInEventImpl implements SignInEvent {
     TResult Function(SignUpEvent value)? signUp,
     TResult Function(SignOutEvent value)? signOut,
     TResult Function(ResetPwdEvent value)? resetPassword,
+    TResult Function(SignUpWithGoogle value)? signUpWithGoogle,
     required TResult orElse(),
   }) {
     if (signIn != null) {
@@ -454,6 +472,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function(String email) resetPassword,
+    required TResult Function() signUpWithGoogle,
   }) {
     return signUp(email, password);
   }
@@ -466,6 +485,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function(String email)? resetPassword,
+    TResult? Function()? signUpWithGoogle,
   }) {
     return signUp?.call(email, password);
   }
@@ -478,6 +498,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function(String email)? resetPassword,
+    TResult Function()? signUpWithGoogle,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -494,6 +515,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     required TResult Function(SignUpEvent value) signUp,
     required TResult Function(SignOutEvent value) signOut,
     required TResult Function(ResetPwdEvent value) resetPassword,
+    required TResult Function(SignUpWithGoogle value) signUpWithGoogle,
   }) {
     return signUp(this);
   }
@@ -506,6 +528,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     TResult? Function(SignUpEvent value)? signUp,
     TResult? Function(SignOutEvent value)? signOut,
     TResult? Function(ResetPwdEvent value)? resetPassword,
+    TResult? Function(SignUpWithGoogle value)? signUpWithGoogle,
   }) {
     return signUp?.call(this);
   }
@@ -518,6 +541,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     TResult Function(SignUpEvent value)? signUp,
     TResult Function(SignOutEvent value)? signOut,
     TResult Function(ResetPwdEvent value)? resetPassword,
+    TResult Function(SignUpWithGoogle value)? signUpWithGoogle,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -582,6 +606,7 @@ class _$SignOutEventImpl implements SignOutEvent {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function(String email) resetPassword,
+    required TResult Function() signUpWithGoogle,
   }) {
     return signOut();
   }
@@ -594,6 +619,7 @@ class _$SignOutEventImpl implements SignOutEvent {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function(String email)? resetPassword,
+    TResult? Function()? signUpWithGoogle,
   }) {
     return signOut?.call();
   }
@@ -606,6 +632,7 @@ class _$SignOutEventImpl implements SignOutEvent {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function(String email)? resetPassword,
+    TResult Function()? signUpWithGoogle,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -622,6 +649,7 @@ class _$SignOutEventImpl implements SignOutEvent {
     required TResult Function(SignUpEvent value) signUp,
     required TResult Function(SignOutEvent value) signOut,
     required TResult Function(ResetPwdEvent value) resetPassword,
+    required TResult Function(SignUpWithGoogle value) signUpWithGoogle,
   }) {
     return signOut(this);
   }
@@ -634,6 +662,7 @@ class _$SignOutEventImpl implements SignOutEvent {
     TResult? Function(SignUpEvent value)? signUp,
     TResult? Function(SignOutEvent value)? signOut,
     TResult? Function(ResetPwdEvent value)? resetPassword,
+    TResult? Function(SignUpWithGoogle value)? signUpWithGoogle,
   }) {
     return signOut?.call(this);
   }
@@ -646,6 +675,7 @@ class _$SignOutEventImpl implements SignOutEvent {
     TResult Function(SignUpEvent value)? signUp,
     TResult Function(SignOutEvent value)? signOut,
     TResult Function(ResetPwdEvent value)? resetPassword,
+    TResult Function(SignUpWithGoogle value)? signUpWithGoogle,
     required TResult orElse(),
   }) {
     if (signOut != null) {
@@ -728,6 +758,7 @@ class _$ResetPwdEventImpl implements ResetPwdEvent {
     required TResult Function(String email, String password) signUp,
     required TResult Function() signOut,
     required TResult Function(String email) resetPassword,
+    required TResult Function() signUpWithGoogle,
   }) {
     return resetPassword(email);
   }
@@ -740,6 +771,7 @@ class _$ResetPwdEventImpl implements ResetPwdEvent {
     TResult? Function(String email, String password)? signUp,
     TResult? Function()? signOut,
     TResult? Function(String email)? resetPassword,
+    TResult? Function()? signUpWithGoogle,
   }) {
     return resetPassword?.call(email);
   }
@@ -752,6 +784,7 @@ class _$ResetPwdEventImpl implements ResetPwdEvent {
     TResult Function(String email, String password)? signUp,
     TResult Function()? signOut,
     TResult Function(String email)? resetPassword,
+    TResult Function()? signUpWithGoogle,
     required TResult orElse(),
   }) {
     if (resetPassword != null) {
@@ -768,6 +801,7 @@ class _$ResetPwdEventImpl implements ResetPwdEvent {
     required TResult Function(SignUpEvent value) signUp,
     required TResult Function(SignOutEvent value) signOut,
     required TResult Function(ResetPwdEvent value) resetPassword,
+    required TResult Function(SignUpWithGoogle value) signUpWithGoogle,
   }) {
     return resetPassword(this);
   }
@@ -780,6 +814,7 @@ class _$ResetPwdEventImpl implements ResetPwdEvent {
     TResult? Function(SignUpEvent value)? signUp,
     TResult? Function(SignOutEvent value)? signOut,
     TResult? Function(ResetPwdEvent value)? resetPassword,
+    TResult? Function(SignUpWithGoogle value)? signUpWithGoogle,
   }) {
     return resetPassword?.call(this);
   }
@@ -792,6 +827,7 @@ class _$ResetPwdEventImpl implements ResetPwdEvent {
     TResult Function(SignUpEvent value)? signUp,
     TResult Function(SignOutEvent value)? signOut,
     TResult Function(ResetPwdEvent value)? resetPassword,
+    TResult Function(SignUpWithGoogle value)? signUpWithGoogle,
     required TResult orElse(),
   }) {
     if (resetPassword != null) {
@@ -809,4 +845,130 @@ abstract class ResetPwdEvent implements AuthBlocEvent {
   @JsonKey(ignore: true)
   _$$ResetPwdEventImplCopyWith<_$ResetPwdEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SignUpWithGoogleImplCopyWith<$Res> {
+  factory _$$SignUpWithGoogleImplCopyWith(_$SignUpWithGoogleImpl value,
+          $Res Function(_$SignUpWithGoogleImpl) then) =
+      __$$SignUpWithGoogleImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SignUpWithGoogleImplCopyWithImpl<$Res>
+    extends _$AuthBlocEventCopyWithImpl<$Res, _$SignUpWithGoogleImpl>
+    implements _$$SignUpWithGoogleImplCopyWith<$Res> {
+  __$$SignUpWithGoogleImplCopyWithImpl(_$SignUpWithGoogleImpl _value,
+      $Res Function(_$SignUpWithGoogleImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SignUpWithGoogleImpl implements SignUpWithGoogle {
+  const _$SignUpWithGoogleImpl();
+
+  @override
+  String toString() {
+    return 'AuthBlocEvent.signUpWithGoogle()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SignUpWithGoogleImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadCurrentUser,
+    required TResult Function(String email, String password) signIn,
+    required TResult Function(String email, String password) signUp,
+    required TResult Function() signOut,
+    required TResult Function(String email) resetPassword,
+    required TResult Function() signUpWithGoogle,
+  }) {
+    return signUpWithGoogle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadCurrentUser,
+    TResult? Function(String email, String password)? signIn,
+    TResult? Function(String email, String password)? signUp,
+    TResult? Function()? signOut,
+    TResult? Function(String email)? resetPassword,
+    TResult? Function()? signUpWithGoogle,
+  }) {
+    return signUpWithGoogle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadCurrentUser,
+    TResult Function(String email, String password)? signIn,
+    TResult Function(String email, String password)? signUp,
+    TResult Function()? signOut,
+    TResult Function(String email)? resetPassword,
+    TResult Function()? signUpWithGoogle,
+    required TResult orElse(),
+  }) {
+    if (signUpWithGoogle != null) {
+      return signUpWithGoogle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoadCurrentUserEvent value) loadCurrentUser,
+    required TResult Function(SignInEvent value) signIn,
+    required TResult Function(SignUpEvent value) signUp,
+    required TResult Function(SignOutEvent value) signOut,
+    required TResult Function(ResetPwdEvent value) resetPassword,
+    required TResult Function(SignUpWithGoogle value) signUpWithGoogle,
+  }) {
+    return signUpWithGoogle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(LoadCurrentUserEvent value)? loadCurrentUser,
+    TResult? Function(SignInEvent value)? signIn,
+    TResult? Function(SignUpEvent value)? signUp,
+    TResult? Function(SignOutEvent value)? signOut,
+    TResult? Function(ResetPwdEvent value)? resetPassword,
+    TResult? Function(SignUpWithGoogle value)? signUpWithGoogle,
+  }) {
+    return signUpWithGoogle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoadCurrentUserEvent value)? loadCurrentUser,
+    TResult Function(SignInEvent value)? signIn,
+    TResult Function(SignUpEvent value)? signUp,
+    TResult Function(SignOutEvent value)? signOut,
+    TResult Function(ResetPwdEvent value)? resetPassword,
+    TResult Function(SignUpWithGoogle value)? signUpWithGoogle,
+    required TResult orElse(),
+  }) {
+    if (signUpWithGoogle != null) {
+      return signUpWithGoogle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SignUpWithGoogle implements AuthBlocEvent {
+  const factory SignUpWithGoogle() = _$SignUpWithGoogleImpl;
 }

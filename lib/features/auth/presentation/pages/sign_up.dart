@@ -89,7 +89,11 @@ class _SignUpState extends State<SignUp> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    SignUpWithOtherButton(onPressed: (){}, buttonText: 'Continue with Google'),
+                    SignUpWithOtherButton(
+                      onPressed: (){
+                        context.read<AuthBloc>().add(AuthBlocEvent.signUpWithGoogle());
+                      }, 
+                      buttonText: 'Continue with Google'),
                     const SizedBox(height: 20),
                     Align(
                       alignment: Alignment.bottomCenter,

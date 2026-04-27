@@ -1,4 +1,5 @@
 import 'package:clean_archi_project1/features/auth/domain/usecase/get_current_user.dart';
+import 'package:clean_archi_project1/features/auth/domain/usecase/google_sign_up.dart';
 import 'package:clean_archi_project1/features/auth/domain/usecase/reset_password.dart';
 import 'package:clean_archi_project1/features/auth/domain/usecase/sign_in_user.dart';
 import 'package:clean_archi_project1/features/auth/domain/usecase/sign_out_user.dart';
@@ -13,18 +14,21 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
   final SignUpUserUseCase _signUpUserUseCase;
   final SignOutUserUseCase _signOutUserUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
+  final SignUpwithGoogleUseCase _signUpWithGoogleUseCase;
   AuthBloc(
     this._getCurrentUserUseCase,
     this._signInUserUseCase,
     this._signUpUserUseCase,
     this._signOutUserUseCase,
     this._resetPasswordUseCase,
+    this._signUpWithGoogleUseCase
   ) : super(const InitialAuthState()) {
     on<LoadCurrentUserEvent>(_onLoadCurrentUser);
     on<SignInEvent>(_onSignIn);
     on<SignUpEvent>(_onSignUp);
     on<SignOutEvent>(_onSignOut);
     on<ResetPwdEvent>(_onResetPassword);
+    on<SignUpWithGoogle>(_onSignUpWithGoogle);
   }
 
   void _onLoadCurrentUser(
@@ -70,6 +74,19 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
     }
   }
 
+  Future<void> _onSignUpWithGoogle(SignUpWithGoogle event, Emitter<AuthBlocState> emit) async {
+    try{
+      emit(const LoadingAuthState());
+      final result = await _signUpWithGoogleUseCase();
+      result.fold(
+        (failure) => emit(FailureAuthState(error: failure.errorMessage)), 
+        (user) => emit(AuthBlocState.authenticated(user: user))
+        );
+    }catch (e){
+      emit(FailureAuthState(error: e.toString()));
+    }
+  }
+
   void _onSignOut(SignOutEvent event, Emitter<AuthBlocState> emit) async {
     try {
       emit(const LoadingAuthState());
@@ -89,4 +106,6 @@ class AuthBloc extends Bloc<AuthBlocEvent, AuthBlocState> {
       emit(FailureAuthState(error: e.toString()));
     }
   }
+
+  
 }
