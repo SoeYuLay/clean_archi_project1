@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AuthTextField extends StatelessWidget {
-  String fieldName;
-  String hintText;
-  TextEditingController controller;
-  AuthTextField({super.key, required this.controller, required this.fieldName, required this.hintText});
+  final String fieldName;
+  final String hintText;
+  final TextEditingController controller;
+  const AuthTextField({super.key, required this.controller, required this.fieldName, required this.hintText});
 
   @override
   Widget build(BuildContext context) {
