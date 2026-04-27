@@ -8,6 +8,7 @@ import 'package:clean_archi_project1/features/daily_news/presentation/pages/save
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
+  initialLocation: '/SignUp',
   routes: [
     GoRoute(
       // path: '/',
@@ -39,8 +40,8 @@ final GoRouter appRouter = GoRouter(
       },
     ),
     GoRoute(
-      // path: '/Splash',
-      path: '/',
+      path: '/Splash',
+      // path: '/',
       builder: (context, state){
         return const SplashScreen();
       }
