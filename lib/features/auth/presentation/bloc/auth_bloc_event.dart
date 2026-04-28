@@ -21,4 +21,6 @@ class AuthBlocEvent with _$AuthBlocEvent{
   const factory AuthBlocEvent.resetPassword({
     required String email,
   }) = ResetPwdEvent;
+
+  const factory AuthBlocEvent.signUpWithGoogle() = SignUpWithGoogle;
 }

@@ -1,7 +1,9 @@
 import 'package:clean_archi_project1/features/auth/data/datasources/remote/firebase_auth_datasource.dart';
+import 'package:clean_archi_project1/features/auth/data/datasources/remote/firebase_auth_google_service.dart';
 import 'package:clean_archi_project1/features/auth/data/repository/auth_repo_impl.dart';
 import 'package:clean_archi_project1/features/auth/domain/repository/auth_repo.dart';
 import 'package:clean_archi_project1/features/auth/domain/usecase/get_current_user.dart';
+import 'package:clean_archi_project1/features/auth/domain/usecase/google_sign_up.dart';
 import 'package:clean_archi_project1/features/auth/domain/usecase/reset_password.dart';
 import 'package:clean_archi_project1/features/auth/domain/usecase/sign_in_user.dart';
 import 'package:clean_archi_project1/features/auth/domain/usecase/sign_out_user.dart';
@@ -41,12 +43,14 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<NewsApiService>(NewsApiService(sl<Dio>()));
 
   sl.registerSingleton<FirebaseAuthDatasource>(FirebaseAuthDatasource(sl<FirebaseAuth>()));
+
+  sl.registerSingleton<FirebaseAuthGoogleService>(FirebaseAuthGoogleService());
   
   //Repository
   // sl.registerSingleton<ArticleRepository>(FakeArticleRepositoryImpl());
   sl.registerSingleton<ArticleRepository>(ArticleRepositoryImpl(sl<NewsApiService>(),sl<ArticleDao>()));
 
-  sl.registerSingleton<AuthRepository>(AuthRepoImpl(sl<FirebaseAuthDatasource>()));
+  sl.registerSingleton<AuthRepository>(AuthRepoImpl(sl<FirebaseAuthDatasource>(),sl<FirebaseAuthGoogleService>()));
 
   //UseCases
   sl.registerSingleton<GetArticleUseCase>(GetArticleUseCase(sl<ArticleRepository>()));
@@ -67,10 +71,12 @@ Future<void> initializeDependencies() async {
 
   sl.registerSingleton<ResetPasswordUseCase>(ResetPasswordUseCase(sl<AuthRepository>()));
 
+  sl.registerSingleton<SignUpwithGoogleUseCase>(SignUpwithGoogleUseCase(sl<AuthRepository>()));
+
   //Blocs
   sl.registerFactory<RemoteArticlesBloc>(() => RemoteArticlesBloc(sl<GetArticleUseCase>()));
 
   sl.registerFactory<LocalArticleBloc>(() => LocalArticleBloc(sl<GetSavedArticleUseCase>(), sl<SaveArticleUseCase>(), sl<RemoveArticleUseCase>()));
 
-  sl.registerFactory<AuthBloc>(() => AuthBloc(sl<GetCurrentUserUseCase>(), sl<SignInUserUseCase>(), sl<SignUpUserUseCase>(), sl<SignOutUserUseCase>(), sl<ResetPasswordUseCase>()));
+  sl.registerFactory<AuthBloc>(() => AuthBloc(sl<GetCurrentUserUseCase>(), sl<SignInUserUseCase>(), sl<SignUpUserUseCase>(), sl<SignOutUserUseCase>(), sl<ResetPasswordUseCase>(), sl<SignUpwithGoogleUseCase>()));
 }

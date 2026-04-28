@@ -3,6 +3,7 @@ import 'package:clean_archi_project1/features/auth/presentation/bloc/auth_bloc_e
 import 'package:clean_archi_project1/features/auth/presentation/bloc/auth_bloc_state.dart';
 import 'package:clean_archi_project1/features/auth/presentation/widget/auth_button.dart';
 import 'package:clean_archi_project1/features/auth/presentation/widget/auth_text_field.dart';
+import 'package:clean_archi_project1/features/auth/presentation/widget/sign_up_with_other_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -29,6 +30,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
        
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: BlocConsumer<AuthBloc, AuthBlocState>(
           listener: (context, state) {
@@ -75,6 +77,24 @@ class _SignUpState extends State<SignUp> {
                         context.read<AuthBloc>().add(AuthBlocEvent.signUp(email: emailController.text, password: passwordController.text));
                       },
                     ),),
+                    const SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Expanded(child: Divider(color: Colors.grey,)),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text('Or', style: TextStyle(color: Colors.grey)),
+                        ),
+                        Expanded(child: Divider(color: Colors.grey,)),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    SignUpWithOtherButton(
+                      onPressed: (){
+                        context.read<AuthBloc>().add(AuthBlocEvent.signUpWithGoogle());
+                      }, 
+                      buttonText: 'Continue with Google'),
+                    const SizedBox(height: 20),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Row(

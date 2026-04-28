@@ -1,15 +1,18 @@
 import 'package:clean_archi_project1/core/error/failure.dart';
 import 'package:clean_archi_project1/features/auth/data/datasources/remote/firebase_auth_datasource.dart';
+import 'package:clean_archi_project1/features/auth/data/datasources/remote/firebase_auth_google_service.dart';
 import 'package:clean_archi_project1/features/auth/data/datasources/remote/models/userDto.dart';
 import 'package:clean_archi_project1/features/auth/data/mapper/user_mapper.dart';
 import 'package:clean_archi_project1/features/auth/domain/entities/user.dart';
 import 'package:clean_archi_project1/features/auth/domain/repository/auth_repo.dart';
 import 'package:either_dart/either.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepoImpl extends AuthRepository{
   FirebaseAuthDatasource _firebaseAuthDatasource;
+  FirebaseAuthGoogleService _firebaseAuthGoogleService;
 
-  AuthRepoImpl(this._firebaseAuthDatasource);
+  AuthRepoImpl(this._firebaseAuthDatasource,this._firebaseAuthGoogleService);
 
   @override
   Future<Either<Failure,UserEntity>> getCurrentUser() async {
@@ -66,6 +69,21 @@ class AuthRepoImpl extends AuthRepository{
     } else {
       return Left(AuthFailure('Failed to sign up'));
     }
+    }catch(e){
+      return Left(AuthFailure('Failed to sign up: $e'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> signUpWithGoogle() async{
+    try{
+      final userCredential = await _firebaseAuthGoogleService.signUpWithGoogle();
+      print("UserCredential : $userCredential");
+      if(userCredential!=null && userCredential.user != null){
+        return Right(UserDto.fromFirebaseUser(userCredential.user!).toDomain());
+      }else{
+        return Left(AuthFailure('Failed to sign up with Google'));
+      }
     }catch(e){
       return Left(AuthFailure('Failed to sign up: $e'));
     }
